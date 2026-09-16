@@ -1,7 +1,15 @@
+.github/**
 .vscode/**
 src/**
+test/**
 browser-extension/**
 node_modules/**
 esbuild.mjs
 tsconfig.json
+package-lock.json
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
 **/*.map
+**/.DS_Store
+tools/**

@@ -28,6 +28,11 @@
     "now playing",
     "media"
   ],
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#6B5BFF",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
