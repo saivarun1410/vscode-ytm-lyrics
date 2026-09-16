@@ -1,0 +1,113 @@
+{
+  "name": "ytm-lyrics",
+  "displayName": "YouTube Music Lyrics",
+  "description": "Time-synced lyrics for YouTube Music, in a VS Code tab beside your code.",
+  "version": "0.1.0",
+  "publisher": "saivarun1410",
+  "license": "MIT",
+  "author": {
+    "name": "Sai Varun Thupakula",
+    "url": "https://github.com/saivarun1410"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saivarun1410/vscode-ytm-lyrics.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saivarun1410/vscode-ytm-lyrics/issues"
+  },
+  "homepage": "https://github.com/saivarun1410/vscode-ytm-lyrics#readme",
+  "qna": "https://github.com/saivarun1410/vscode-ytm-lyrics/issues",
+  "keywords": [
+    "youtube music",
+    "lyrics",
+    "synced lyrics",
+    "lrc",
+    "lrclib",
+    "music",
+    "now playing",
+    "media"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ytmLyrics.open",
+        "title": "YTM Lyrics: Open Lyrics Panel"
+      },
+      {
+        "command": "ytmLyrics.restartBridge",
+        "title": "YTM Lyrics: Restart Bridge Server"
+      },
+      {
+        "command": "ytmLyrics.nudgeEarlier",
+        "title": "YTM Lyrics: Nudge Lyrics Earlier (-250ms)"
+      },
+      {
+        "command": "ytmLyrics.nudgeLater",
+        "title": "YTM Lyrics: Nudge Lyrics Later (+250ms)"
+      }
+    ],
+    "configuration": {
+      "title": "YouTube Music Lyrics",
+      "properties": {
+        "ytmLyrics.port": {
+          "type": "number",
+          "default": 51234,
+          "description": "Loopback port the browser bridge connects to. Must match PORT in the browser extension's background.js."
+        },
+        "ytmLyrics.token": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Optional shared secret. Leave empty to rely on browser-extension origin checking (the default, and enough to keep web pages out). If set, the browser extension must send the same value."
+        },
+        "ytmLyrics.autoOpen": {
+          "type": "boolean",
+          "default": false,
+          "description": "Open the lyrics panel automatically when a track starts playing."
+        },
+        "ytmLyrics.offsetMs": {
+          "type": "number",
+          "default": 0,
+          "description": "Global timing offset in milliseconds. Positive shows lines later; negative shows them earlier."
+        },
+        "ytmLyrics.fontSize": {
+          "type": "number",
+          "default": 15,
+          "description": "Lyrics font size in pixels."
+        },
+        "ytmLyrics.clickToSeek": {
+          "type": "boolean",
+          "default": true,
+          "description": "Click a lyric line to seek the YouTube Music player to that timestamp."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "package": "npm run typecheck && npm run build -- --production && npx @vscode/vsce package --no-dependencies",
+    "test": "node test/smoke.mjs"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/vscode": "^1.85.0",
+    "@types/ws": "^8.5.13",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.2"
+  }
+}

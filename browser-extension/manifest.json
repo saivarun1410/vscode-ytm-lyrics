@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "YTM Lyrics Bridge",
+  "version": "0.1.0",
+  "description": "Reports YouTube Music playback state to the YTM Lyrics VS Code extension over loopback.",
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://music.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "host_permissions": ["https://music.youtube.com/*"]
+}
