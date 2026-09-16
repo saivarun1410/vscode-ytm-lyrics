@@ -56,8 +56,10 @@ lyrics provider. That is the intended extension point.
 
 ## Pull requests
 
-Branch off `main`, keep the diff focused, and make sure `npm run typecheck && npm run build
-&& npm test` passes. Describe what you changed and how you verified it — "played three
+`main` is protected: it takes no direct pushes, every change arrives as a pull request, CI
+must be green on all seven jobs, and the repository owner must approve before merge. Fork the
+repo, branch off `main`, keep the diff focused, and make sure `npm run typecheck && npm run
+build && npm test` passes. Describe what you changed and how you verified it — "played three
 tracks and seeked around" is a perfectly good test report for UI work.
 
 ## Reporting bugs
