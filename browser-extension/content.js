@@ -14,6 +14,21 @@ function findVideo() {
   return document.querySelector('video');
 }
 
+/**
+ * True while an advertisement is playing.
+ *
+ * Ads share the page's single <video> element and repoint navigator.mediaSession at
+ * themselves, so without this check an ad is reported as a track — and because the URL
+ * still carries the real track's id, its metadata would be cached under that id.
+ *
+ * The player exposes `ad-showing` for the duration of an ad. Note `ad-created` is NOT a
+ * usable signal: it persists after the ad finishes.
+ */
+function isAdPlaying() {
+  const player = document.querySelector('#movie_player');
+  return !!player && player.classList.contains('ad-showing');
+}
+
 function readTrack(video) {
   const metadata = navigator.mediaSession && navigator.mediaSession.metadata;
   if (!metadata) { return null; }
@@ -47,6 +62,9 @@ function signatureOf(track) {
 }
 
 function sample() {
+  // Hold the last real track while an ad interrupts, rather than reporting the ad.
+  if (isAdPlaying()) { return; }
+
   const video = findVideo();
   const track = video ? readTrack(video) : null;
 

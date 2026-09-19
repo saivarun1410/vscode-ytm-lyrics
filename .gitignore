@@ -4,3 +4,5 @@ out/
 *.vsix
 .DS_Store
 test/.build/
+
+# Manual browser-check profiles
