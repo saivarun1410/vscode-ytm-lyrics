@@ -101,7 +101,7 @@
     "test": "node test/smoke.mjs"
   },
   "dependencies": {
-    "ws": "^8.18.0"
+    "ws": "^8.22.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
